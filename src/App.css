@@ -22,13 +22,36 @@
     background-color: rgb(23, 75, 72);
     height: 25vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 12px;
+    color: white;
+    font-size: 20px;
+    max-width: 45vw;
+}
+
+.ship#detail {
+    margin: 0 auto;
+    margin-top: 15vh;
+    align-items: flex-start;
+    padding: 30px;
 }
 
 .shipLink {
     color: white;
     text-decoration: none;
-    font-size: 28px;
+    margin: 20px;
+}
+
+.ship#detail .shipLink {
+    align-self: flex-end;
+}
+
+Link.shipLink:hover {
+    color: cyan;
+}
+
+p {
+    margin: 5px;
 }
