@@ -39,7 +39,9 @@ class Home extends Component {
             let index = ship.url.split('/')[5];
             return (
                 <div className="ship" key={`ship ${index}`}>
-                    <Link className="shipLink" to={`/${index}`}>
+                    <Link
+                        className="shipLink"
+                        to={{ pathname: `/${index}`, state: ship }}>
                         {ship.name}
                     </Link>
                 </div>

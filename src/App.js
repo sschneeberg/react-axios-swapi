@@ -11,9 +11,8 @@ function App() {
                 <Route path="/" exact component={Home} />
                 <Route
                     path="/:id"
-                    render={(routeInfo) => {
-                        let id = routeInfo.match.params.id;
-                        return <StarshipPage id={id} />;
+                    render={({ location }) => {
+                        return <StarshipPage location={location} />;
                     }}
                 />
             </div>

@@ -13,7 +13,7 @@ class StarshipPage extends Component {
             isLoading: false
         };
     }
-
+    /*
     async componentDidMount() {
         this.setState({ isLoading: true });
         console.log('get ship info');
@@ -35,14 +35,24 @@ class StarshipPage extends Component {
             isLoading: false
         });
     }
+    */
 
     render() {
+        const ship = this.props.location.state;
+        let pilots = ship.pilots;
+        if (pilots.length === 0) {
+            pilots = 'No pilots found';
+        } else {
+            //call for names later
+            pilots = pilots.length;
+        }
+
         return (
             <div id="detail" className="ship">
                 {this.state.isLoading ? <h1>LOADING SHIPS . . .</h1> : null}
-                <p>NAME: {this.state.name}</p>
-                <p>MODEL: {this.state.model}</p>
-                <p>PILOTS: {this.state.pilots}</p>
+                <p>NAME: {ship.name}</p>
+                <p>MODEL: {ship.model}</p>
+                <p>PILOTS: {pilots}</p>
                 <Link className="shipLink" to="/">
                     {'<< '} RETURN TO LIST
                 </Link>
