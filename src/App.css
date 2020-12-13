@@ -20,7 +20,7 @@
 
 .ship {
     background-color: rgb(23, 75, 72);
-    height: 25vh;
+    min-height: 25vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,7 +41,7 @@
 .shipLink {
     color: white;
     text-decoration: none;
-    margin: 20px;
+    margin: 15px;
 }
 
 .ship#detail .shipLink {
@@ -53,5 +53,17 @@ Link.shipLink:hover {
 }
 
 p {
+    margin: 5px;
+}
+
+ul {
+    margin: 5px;
+    padding: 0;
+    text-align: left;
+}
+
+li {
+    list-style: none;
+    padding-left: 20px;
     margin: 5px;
 }

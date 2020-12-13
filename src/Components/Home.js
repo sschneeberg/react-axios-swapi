@@ -6,32 +6,39 @@ import '../App.css';
 class Home extends Component {
     constructor() {
         super();
-        this.state = { ships: [], isLoading: false };
+        this.state = { ships: [], isLoading: false, error: false };
     }
 
     async componentDidMount() {
         //call API for ships, create DOM elements
         this.setState({ isLoading: true });
         console.log('set shipList');
-        const results1 = await axios.get('http://swapi.dev/api/starships/');
-        const list1 = results1.data.results;
-        const results2 = await axios.get(
-            'http://swapi.dev/api/starships/?page=2'
-        );
-        const list2 = results2.data.results;
-        const results3 = await axios.get(
-            'http://swapi.dev/api/starships/?page=3'
-        );
-        const list3 = results3.data.results;
-        const results4 = await axios.get(
-            'http://swapi.dev/api/starships/?page=4'
-        );
-        const list4 = results4.data.results;
-        const masterlist = list1.concat(list2, list3, list4);
-        this.setState({
-            ships: masterlist,
-            isLoading: false
-        });
+        try {
+            const results1 = await axios.get('http://swapi.dev/api/starships/');
+            const list1 = results1.data.results;
+            const results2 = await axios.get(
+                'http://swapi.dev/api/starships/?page=2'
+            );
+            const list2 = results2.data.results;
+            const results3 = await axios.get(
+                'http://swapi.dev/api/starships/?page=3'
+            );
+            const list3 = results3.data.results;
+            const results4 = await axios.get(
+                'http://swapi.dev/api/starships/?page=4'
+            );
+            const list4 = results4.data.results;
+            const masterlist = list1.concat(list2, list3, list4);
+            this.setState({
+                ships: masterlist,
+                isLoading: false
+            });
+        } catch (error) {
+            this.setState({
+                isLoading: false,
+                error: true
+            });
+        }
     }
 
     render() {
@@ -51,6 +58,12 @@ class Home extends Component {
         return (
             <>
                 {this.state.isLoading ? <h1>LOADING SHIPS . . . </h1> : null}
+                {this.state.error ? (
+                    <h1>
+                        We've experienced and error, please try reloading the
+                        page.
+                    </h1>
+                ) : null}
                 <div className="ship-grid">{shipList}</div>
             </>
         );
